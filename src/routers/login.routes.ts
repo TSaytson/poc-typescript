@@ -5,5 +5,10 @@ import { signUpSchema, signInSchema } from '../schemas/login.schemas.js'
 
 export const loginRoutes = Router();
 
-loginRoutes.post('/signup', schemaValidation(signUpSchema), loginController.signUp);
-loginRoutes.post('/signin', schemaValidation(signInSchema), loginController.signIn);
+loginRoutes.post('/signup',
+    schemaValidation(signUpSchema),
+    loginController.signUp);
+    
+loginRoutes.post('/signin',
+    schemaValidation(signInSchema),
+    loginController.signIn);

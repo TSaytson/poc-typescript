@@ -1,5 +1,5 @@
 import { db } from '../config/database.js'
-import { User } from '../protocols/user.js'
+import { User } from '../protocols/entities.js'
 
 function insertUser(
     { name, email, password }: User) {

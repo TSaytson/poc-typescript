@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { Error } from "../protocols/entities";
 
 
 export function errorHandlerMiddleware(
