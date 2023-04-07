@@ -1,21 +1,21 @@
 import { QueryResult, QueryResultRow } from "pg";
 import { db } from "../config/database.js";
-import { Product } from '../protocols'
+import { Product, ProductEntity } from '../protocols'
 
 function selectProducts():
-    Promise<QueryResult<Product>> {
+    Promise<QueryResult<ProductEntity>> {
     return db.query(`SELECT * FROM products;`);
 }
 
 function selectProductByName(name: string):
-    Promise<QueryResult<Product>> {
+    Promise<QueryResult<ProductEntity>> {
     
     return db.query(`SELECT * FROM products
     WHERE product_name=$1;`, [name]);
 }
 
 function selectProductById(id: number):
-    Promise<QueryResult<Product>>{
+    Promise<QueryResult<ProductEntity>>{
     
     return db.query(`SELECT * FROM products
     WHERE id=$1;`, [id]);

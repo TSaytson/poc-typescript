@@ -36,7 +36,7 @@ async function updateProduct(req: Request,
 }
 
 async function deleteProduct(req: Request,
-    res: Response) {
+    res: Response): Promise<Response> {
     
     const id: number = +req.params.id;
 

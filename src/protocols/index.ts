@@ -13,12 +13,15 @@ export type Session = {
     token: string
 }
 
-export type Product = {
+export type ProductEntity = {
+    id: number,
     name: string,
     validity: Date,
     amount: number,
     price: number
 }
+
+export type Product = Omit<ProductEntity, "id">
 
 export interface IError extends Error {
     status: number

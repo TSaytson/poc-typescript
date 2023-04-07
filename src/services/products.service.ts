@@ -1,9 +1,9 @@
 import { productsErrors } from "../errors/products.errors.js";
-import { Product } from "../protocols";
+import { Product, ProductEntity } from "../protocols";
 import { productsRepository } from "../repositories/products.repository.js";
 import { checkProduct } from '../utils/index.js';
 
-async function getProducts(): Promise<Product[]> {
+async function getProducts(): Promise<ProductEntity[]> {
 
     const { rows: products } =
         await productsRepository.selectProducts();
