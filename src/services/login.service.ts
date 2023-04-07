@@ -38,14 +38,27 @@ async function signIn({ email, password }: User):
         const { rows: [session] } =
             await authRepository.
                 findByUserId(user.id);
-
-        if (session)
+        
+        if (session) {
+            jwt.verify(
+                session.token, process.env.SECRET_JWT,
+                (error, decoded) => {
+                    if (error)
+                        console.log(error);
+            });
             return session.token;
+        }
 
         const token = jwt.sign({
             id: user.id,
             email: user.email
         }, process.env.SECRET_JWT || 'secret');
+
+        jwt.verify(token, process.env.SECRET_JWT,
+            (error, decoded) => {
+                if (error)
+                console.log(error.message);
+        });
 
         await authRepository.
             createSession(user.id, token);

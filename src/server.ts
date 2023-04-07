@@ -3,6 +3,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import { routes } from './routers/index.routes.js';
 import { errorHandlerMiddleware } from './middlewares/errorHandler.middleware.js'
+import { authValidation } from './middlewares/authValidation.middleware.js';
 
 const server = express();
 

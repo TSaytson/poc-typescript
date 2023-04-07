@@ -4,4 +4,4 @@ import { loginRoutes } from './login.routes.js';
 
 export const routes = Router();
 
-routes.use([productsRoutes, loginRoutes]);
+routes.use([loginRoutes, productsRoutes] );
