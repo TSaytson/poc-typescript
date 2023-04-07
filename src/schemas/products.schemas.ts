@@ -1,8 +1,8 @@
-import joi from 'joi';
+import z from 'zod';
 
-export const productSchema = joi.object({
-    name: joi.string().min(4).required(),
-    validity: joi.date().required(),
-    amount: joi.number().positive().required(),
-    price: joi.number().positive().required()
+export const productSchema = z.object({
+    name: z.string().min(4),
+    validity: z.date(),
+    amount: z.number().positive(),
+    price: z.number().positive()
 })
