@@ -1,14 +1,19 @@
+import { QueryResult } from 'pg'
 import { db } from '../config/database.js'
-import { User } from '../protocols/entities.js'
+import { User, UserEntity } from '../protocols'
 
 function insertUser(
-    { name, email, password }: User) {
+    { name, email, password }: User):
+    Promise<QueryResult> {
+    
     return db.query(`INSERT INTO users 
     (name, email, password)
     VALUES ($1, $2, $3);`, [name, email, password])
 }
 
-function findByEmail(email: string) {
+function findByEmail(email: string):
+    Promise<QueryResult<UserEntity>>    {
+    
     return db.query(`SELECT * FROM users
     WHERE email=$1;`, [email])
 }

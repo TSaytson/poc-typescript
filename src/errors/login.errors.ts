@@ -1,4 +1,6 @@
-function emailConflict() {
+import { IError } from "../protocols"
+
+function emailConflict():IError {
     return {
         name: "Email Conflict",
         message: "Email already in use",
@@ -6,7 +8,7 @@ function emailConflict() {
     }
 }
 
-function unprocessableEntity() {
+function unprocessableEntity():IError {
     return {
         name: "Unprocessable Entity",
         message: "Couldn't log you in",

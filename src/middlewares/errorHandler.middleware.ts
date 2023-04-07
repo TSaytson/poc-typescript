@@ -1,12 +1,14 @@
 import { Request, Response, NextFunction } from "express";
-import { Error } from "../protocols/entities";
+import { IError } from "../protocols";
 
 
 export function errorHandlerMiddleware(
-    error: Error,
+    error: IError,
     req: Request,
     res: Response,
-    next: NextFunction) {
+    next: NextFunction): Response {
+    
+    console.log(error);
     return res.status(error.status).
         send(error.message);
 }
