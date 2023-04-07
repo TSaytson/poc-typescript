@@ -9,3 +9,10 @@ export type Error = {
     message: string,
     status: number
 }
+
+export type Product = {
+    name: string,
+    validity: Date,
+    amount: number,
+    price: number
+}
