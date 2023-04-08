@@ -1,26 +1,33 @@
 import { Request, Response, NextFunction } from 'express';
-import { Schema } from 'joi';
+import { ZodSchema } from 'zod';
 
-export function schemaValidation(schema: Schema) {
+export function schemaValidation(schema: ZodSchema) {
     return (req: Request,
         res: Response,
         next: NextFunction) => {
         
-        const { error } = schema.validate(
-            req.body, { abortEarly: false }
+        const result = schema.safeParse(
+            req.body
         );
 
-        if (error) {
-
-            const errors = error.details.map(
-                (detail) => detail.message
-            );
-
+        if (!result.success) {
+            console.log(result.error.errors);
+            const errors = result.error.errors.
+                map((error) => error.message);
             console.log(errors);
-
-            return res.status(422).
-                send(errors);
         }
+
+        // if (error) {
+
+        //     const errors = error.details.map(
+        //         (detail) => detail.message
+        //     );
+
+        //     console.log(error);
+
+        //     return res.status(422).
+        //         send(error);
+        // }
         next();
     }
 }

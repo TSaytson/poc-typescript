@@ -5,6 +5,10 @@ export const signUpSchema = z.object({
     email: z.string().email(),
     password: z.string().min(4),
     confirmPassword: z.string().min(4)
+}).refine((data) =>
+    data.password === data.confirmPassword, {
+    message: "Senhas diferentes",
+        path: ['confirmPassword']
 });
 
 export const signInSchema = z.object({

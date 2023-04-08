@@ -9,10 +9,17 @@ export async function authValidation(
     
     const { authorization } = req.headers;
     
-    const token = authorization?.
-        replace('Bearer ', '');
+    if (!authorization)
+        throw authErrors.tokenError();
+    
+    const bearer = authorization.
+        split(' ')[0];
+    
+    const token = authorization.
+        split(' ')[1];
 
-    if (!token) throw authErrors.tokenError();
+    if (bearer !== 'Bearer' || !token)
+        throw authErrors.invalidToken();
 
     jwt.verify(token, process.env.SECRET_JWT,
         (error, decoded) => {
