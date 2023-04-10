@@ -1,5 +1,5 @@
 import { productsErrors } from "../errors/products.errors.js";
-import { Product } from "../protocols";
+import { Product } from "../schemas";
 import { productsRepository } from "../repositories/products.repository.js";
 import { checkProduct } from '../utils/index.js';
 

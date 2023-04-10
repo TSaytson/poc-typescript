@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Product } from '../protocols/index.js';
+import { Product } from '../schemas';
 import { productsService } from '../services/products.service.js'
 
 async function getProducts(req: Request,

@@ -1,5 +1,5 @@
 import { loginErrors } from "../errors/login.errors.js";
-import { User } from "../protocols";
+import { User, SUser } from "../schemas/login.schemas.js";
 import { loginRepository } from '../repositories/login.repository.js'
 import { authRepository } from "../repositories/auth.repository.js";
 import bcrypt from 'bcrypt';
@@ -23,7 +23,8 @@ async function signUp(
 
 }
 
-async function signIn({ email, password }: User):
+async function signIn({
+    email, password }: SUser):
     Promise<string> {
     
     const { rows: [user] } =
@@ -41,7 +42,8 @@ async function signIn({ email, password }: User):
         
         if (session) {
             jwt.verify(
-                session.token, process.env.SECRET_JWT,
+                session.token,
+                process.env.SECRET_JWT || 'secret',
                 (error, decoded) => {
                     if (error)
                         console.log(error);
@@ -54,7 +56,8 @@ async function signIn({ email, password }: User):
             email: user.email
         }, process.env.SECRET_JWT || 'secret');
 
-        jwt.verify(token, process.env.SECRET_JWT,
+        jwt.verify(token,
+            process.env.SECRET_JWT || 'secret',
             (error, decoded) => {
                 if (error)
                 console.log(error.message);

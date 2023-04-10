@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { User } from '../protocols';
+import { User } from '../schemas/login.schemas.js';
 import { loginService } from '../services/login.service.js'
 
 async function signUp(req: Request, res: Response):

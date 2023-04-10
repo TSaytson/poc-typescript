@@ -9,25 +9,19 @@ export function schemaValidation(schema: ZodSchema) {
         const result = schema.safeParse(
             req.body
         );
-
         if (!result.success) {
-            console.log(result.error.errors);
+
+            // const { errors: [error] } = result.error;
+
+            // return res.send(`${error.path} ${error.message}`)
+            
             const errors = result.error.errors.
-                map((error) => error.message);
-            console.log(errors);
+                map((error) =>
+                    `${error.path} ${error.message}`);
+
+            return res.status(422).
+                send(errors);
         }
-
-        // if (error) {
-
-        //     const errors = error.details.map(
-        //         (detail) => detail.message
-        //     );
-
-        //     console.log(error);
-
-        //     return res.status(422).
-        //         send(error);
-        // }
         next();
     }
 }

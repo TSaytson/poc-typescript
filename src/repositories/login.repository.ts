@@ -1,6 +1,6 @@
 import { QueryResult } from 'pg'
 import { db } from '../config/database.js'
-import { User, UserEntity } from '../protocols'
+import { User, UserEntity } from '../schemas/login.schemas.js'
 
 function insertUser(
     { name, email, password }: User):

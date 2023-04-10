@@ -7,7 +7,7 @@
         "strict": true
     },
     "ts-node": {
-        "swc": true,
+        "swc": false,
         "esm": true
     }
 }

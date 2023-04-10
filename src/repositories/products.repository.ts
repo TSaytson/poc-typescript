@@ -1,6 +1,6 @@
 import { QueryResult, QueryResultRow } from "pg";
 import { db } from "../config/database.js";
-import { Product } from '../protocols'
+import { Product } from '../schemas'
 
 function selectProducts():
     Promise<QueryResult<Product>> {

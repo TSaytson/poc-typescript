@@ -21,7 +21,7 @@ export async function authValidation(
     if (bearer !== 'Bearer' || !token)
         throw authErrors.invalidToken();
 
-    jwt.verify(token, process.env.SECRET_JWT,
+    jwt.verify(token, process.env.SECRET_JWT || 'secret',
         (error, decoded) => {
             if (error)
                 throw authErrors.invalidToken();
